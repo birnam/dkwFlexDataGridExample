@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+        creationComplete="creationCompleteHandler(event)">
+    <fx:Script><![CDATA[
+        import mx.collections.ArrayCollection;
+        import mx.events.FlexEvent;
+
+        [Bindable]
+        public var datasource:ArrayCollection;
+
+        private function creationCompleteHandler(event:FlexEvent):void {
+            datasource = new ArrayCollection();
+            datasource.addItem({'a':1, 'b':2.4, 'c':3.2, 'd':4.1});
+            datasource.addItem({'a':1.1, 'b':2.3, 'c':3.4, 'd':4.7});
+            datasource.addItem({'a':1.2, 'b':2.2, 'c':3.1, 'd':4.2});
+            datasource.addItem({'a':1.3, 'b':2.1, 'c':3.5, 'd':4.0});
+        }
+        ]]></fx:Script>
+
+    <s:HGroup>
+
+        <s:VGroup width="300">
+            <s:Label>Data Grid</s:Label>
+            <s:DataGrid id="dg" dataProvider="{datasource}" width="100%">
+            </s:DataGrid>
+        </s:VGroup>
+
+        <s:VGroup>
+            <s:Label>Detail</s:Label>
+            <s:HGroup>
+                <s:Label>a: </s:Label>
+                <s:TextInput text="@{dg.selectedItem.a}" change="{datasource.refresh()}" />
+            </s:HGroup>
+            <s:HGroup>
+                <s:Label>b: </s:Label>
+                <s:TextInput text="@{dg.selectedItem.b}" change="{datasource.refresh()}" />
+            </s:HGroup>
+            <s:HGroup>
+                <s:Label>c: </s:Label>
+                <s:TextInput text="@{dg.selectedItem.c}" change="{datasource.refresh()}" />
+            </s:HGroup>
+            <s:HGroup>
+                <s:Label>d: </s:Label>
+                <s:TextInput text="@{dg.selectedItem.d}" change="{datasource.refresh()}" />
+            </s:HGroup>
+        </s:VGroup>
+
+    </s:HGroup>
+</s:Application>
